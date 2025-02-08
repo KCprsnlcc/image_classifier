@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Classification Result</title>
+    <style>
+        /* Simple CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        img {
+            max-width: 300px;
+            display: block;
+            margin-bottom: 15px;
+        }
+        .nav-links a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Classification Result</h1>
+        <img src="{{ image_url }}" alt="Cropped Face">
+        <h2>Predictions:</h2>
+        <ul>
+            {% for result in results %}
+                <li>{{ result.class }}: {{ result.percentage }}%</li>
+            {% endfor %}
+        </ul>
+        <br>
+        <div class="nav-links">
+            <a href="{% url 'classify_image' %}">Classify Another Image</a>
+            <a href="{% url 'upload_image' %}">Upload Images</a>
+            <a href="{% url 'train_model' %}">Train Model</a>
+            <a href="{% url 'results_view' %}">View Results</a>
+        </div>
+    </div>
+</body>
+</html>

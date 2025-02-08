@@ -1,0 +1,60 @@
+<!-- classifier/templates/classifier/upload.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Images</title>
+    <style>
+        /* Simple CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .error {
+            color: red;
+        }
+        .nav-links a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Images for Training</h1>
+        {% if form.errors %}
+            <div class="error">
+                <p>Please correct the errors below:</p>
+                {{ form.errors }}
+            </div>
+        {% endif %}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>
+                <label for="id_label">Label:</label>
+                <input type="text" name="label" id="id_label" required>
+            </p>
+            <p>
+                <label for="id_images">Select Images:</label>
+                {{ form.images }}
+            </p>
+            <button type="submit">Upload Images</button>
+        </form>
+        <br>
+        <div class="nav-links">
+            <a href="{% url 'train_model' %}">Go to Training</a>
+            <a href="{% url 'classify_image' %}">Go to Classification</a>
+            <a href="{% url 'results_view' %}">View Results</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+Implement the Image Classification code as either a Flask or a Django application.
+You can have it in a hosting or just within your local computer.
+The code should be able to do the following:
+1. Accept sample images and classes
+Ask for classes/names of persons
+Ask for image samples per class
+2. Have a button to start training
+3. Show on the webpage the result of the classification.
+Ask the user to pick one of the images
+Show the classification
+

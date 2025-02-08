@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error</title>
+    <style>
+        /* Simple CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .error {
+            color: red;
+        }
+        .nav-links a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Error</h1>
+        <p class="error">{{ message }}</p>
+        <br>
+        <div class="nav-links">
+            <a href="{% url 'upload_image' %}">Back to Upload</a>
+            <a href="{% url 'train_model' %}">Back to Training</a>
+            <a href="{% url 'classify_image' %}">Back to Classification</a>
+        </div>
+    </div>
+</body>
+</html>

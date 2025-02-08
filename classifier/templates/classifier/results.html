@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Training Results</title>
+    <style>
+        /* Simple CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .nav-links a, .nav-links form {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #3498db;
+        }
+        .reset-button {
+            background-color: #e74c3c;
+            border: none;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Training Results</h1>
+        <h2>Uploaded Images by Label</h2>
+        <ul>
+            {% for stat in stats %}
+                <li>{{ stat.label }}: {{ stat.total }} images</li>
+            {% empty %}
+                <li>No images uploaded yet.</li>
+            {% endfor %}
+        </ul>
+        <p>
+            {% if model_exists %}
+                A trained model (<code>.h5</code> file) exists.
+            {% else %}
+                No trained model found.
+            {% endif %}
+        </p>
+        <!-- Reset Uploaded Images Button -->
+        <form method="post" action="{% url 'reset_uploads' %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="reset-button">Reset Uploaded Images</button>
+        </form>
+        <br><br>
+        <div class="nav-links">
+            <a href="{% url 'upload_image' %}">Upload More Images</a>
+            <a href="{% url 'train_model' %}">Train Model</a>
+            <a href="{% url 'classify_image' %}">Classify Image</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Train Model</title>
+    <style>
+        /* Simple CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .nav-links a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #3498db;
+        }
+        /* CSS loader (spinner) */
+        .loader {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Initially hide the loader container */
+        #loader-container {
+            display: none;
+        }
+    </style>
+    <script>
+        function showLoader() {
+            document.getElementById('loader-container').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Train the CNN Model</h1>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+        <form method="post" onsubmit="showLoader()">
+            {% csrf_token %}
+            <button type="submit" name="action" value="reset">Reset Model and Train</button>
+            <button type="submit" name="action" value="continue">Continue Training</button>
+            <!-- New Delete Model button -->
+            <button type="submit" name="action" value="delete">Delete Trained Model</button>
+        </form>
+        <!-- Loader container with CSS spinner -->
+        <div id="loader-container">
+            <div class="loader"></div>
+            <p>Training in progress... Please wait.</p>
+        </div>
+        <br>
+        <div class="nav-links">
+            <a href="{% url 'upload_image' %}">Upload More Images</a>
+            <a href="{% url 'classify_image' %}">Go to Classification</a>
+            <a href="{% url 'results_view' %}">View Results</a>
+        </div>
+    </div>
+</body>
+</html>

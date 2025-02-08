@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Classify Image</title>
+    <style>
+        /* Simple CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .nav-links a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Classify an Image</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>
+                <input type="file" name="image" accept="image/jpeg, image/png" required>
+            </p>
+            <button type="submit">Classify Image</button>
+        </form>
+        <br>
+        <div class="nav-links">
+            <a href="{% url 'upload_image' %}">Upload Images</a>
+            <a href="{% url 'train_model' %}">Train Model</a>
+            <a href="{% url 'results_view' %}">View Results</a>
+        </div>
+    </div>
+</body>
+</html>
