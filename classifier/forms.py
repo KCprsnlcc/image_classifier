@@ -11,7 +11,7 @@ class CustomMultiFileInput(ClearableFileInput):
 class MultiImageUploadForm(forms.Form):
     images = MultiFileField(
         min_num=1,
-        max_num=5000,
+        max_num=100000,
         max_file_size=1000 * 1024 * 1024,  # 1 GB per file
         widget=CustomMultiFileInput(attrs={
             'accept': 'image/jpeg,image/png'
